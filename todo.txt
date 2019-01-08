@@ -1,0 +1,31 @@
+TO-DO List
+
+Intro - Done
+
+Portfolio - Create things 1 day of work
+
+About - Create modal. half a day
+
+Blog - Future addition. Create "under construction" (timer down, fun project)
+
+Padding general: 40px
+
+- Align images in portfolio single
+
+- Manage form with netlify, try with a modal:
+You can replace the default success message with a custom page you create by adding an action attribute to the <form> tag, entering the path of your custom page (like "/pages/success") as the value. The path must be relative to the site root, starting with a /.
+
+- Figure folder structure and git push into existing repository
+
+- Only push builds
+
+- Categories in Portfolio with Font Awesome icons.
+
+- Add portfolio stuff
+
+- Deploy checklist (meta tags, etc)
+
+- Poner alguna nave random en el espacio o icono "meteor"
+
+- Add a contact prompt in the menu?
+
