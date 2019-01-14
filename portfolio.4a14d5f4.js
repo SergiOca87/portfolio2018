@@ -128,7 +128,7 @@ var portfolioButtons = Array.from(document.querySelectorAll(".portfolio-filters 
 var websitesFilter = document.querySelector('#websites-filter');
 portfolioButtons.forEach(function (elem) {
   elem.addEventListener("click", filterPortfolioItems);
-}); //This code comes from 
+});
 
 var simulateClick = function simulateClick(elem) {
   // Create our event (with options)
@@ -161,20 +161,34 @@ function filterPortfolioItems(e) {
       var cur = _step.value;
 
       if (cur.className === "portfolio-item-wrap " + clickedButtonId || cur.className === "portfolio-item-wrap " + clickedButtonId + " hidden" || cur.className === "portfolio-item-wrap " + clickedButtonId + " filter-description" || cur.className === "portfolio-item-wrap " + clickedButtonId + " filter-description hidden") {
-        cur.classList.remove("hidden");
-        cur.style.position = "initial";
+        cur.classList.add("hidden");
+        setTimeout(function () {
+          cur.style.display = "flex";
+          cur.classList.remove("hidden");
+        }, 500);
         return "continue";
-        /* In case I add a showAll button
-        } else if( e.target.id === "showAll"){
-          	cur.classList.remove("hidden");
-            cur.style.position = "initial";
-          continue; */
+      } else if (e.target.id === "showAll") {
+        cur.classList.add("hidden");
+        var curTitle = cur.classList.contains('filter-description');
+
+        if (curTitle) {
+          setTimeout(function () {
+            cur.style.display = "none";
+          }, 500);
+        } else {
+          setTimeout(function () {
+            cur.style.display = "flex";
+            cur.classList.remove("hidden");
+          }, 500);
+        }
+
+        return "continue";
       }
 
       cur.classList.add("hidden");
       setTimeout(function () {
-        cur.style.position = "absolute";
-      }, 300);
+        cur.style.display = "none";
+      }, 500); //Transition timing
     };
 
     for (var _iterator = portfolioItems[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
@@ -226,7 +240,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52147" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

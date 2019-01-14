@@ -1911,7 +1911,7 @@ document.querySelector(".about-personal-container").addEventListener("mouseenter
     return tag.classList.contains("personal-tag");
   });
   var applyTagPosition = filteredTags.forEach(function (tags) {
-    var tagPosition = 'calc(' + window.getComputedStyle(tags).getPropertyValue('top') + ' + 15%)';
+    var tagPosition = 'calc(' + window.getComputedStyle(tags).getPropertyValue('top') + ' + 10%)';
     tags.setAttribute("style", "left: 19%; color: white; top:" + tagPosition);
   });
 }); //Mouseleave function
@@ -1939,7 +1939,7 @@ document.querySelector(".about-professional-container").addEventListener("mousee
     return tag.classList.contains("professional-tag");
   });
   var applyTagPosition = filteredTags.forEach(function (tags) {
-    var tagPosition = 'calc(' + window.getComputedStyle(tags).getPropertyValue('top') + ' + 15%)';
+    var tagPosition = 'calc(' + window.getComputedStyle(tags).getPropertyValue('top') + ' + 10%)';
     tags.setAttribute("style", "left: 68%; color: white; top:" + tagPosition);
   });
 }); //Mouseleave function
@@ -1955,6 +1955,26 @@ document.querySelector(".about-professional-container").addEventListener("mousel
     tags.setAttribute("style", "top:" + tagInitialStateTop[index] + ";" + "left:" + tagInitialStateLeft[index] + ";");
   });
 });
+/* Form validation */
+
+/* form fields */
+
+var formName = document.querySelector("input[name=name]");
+var formEmail = document.querySelector("input[name=email]");
+var formMessage = document.querySelector("textarea[name=message]");
+
+if (formName.value !== "") {
+  console.log("not empty");
+}
+
+document.querySelector(".contact-form").addEventListener("keydown", function () {
+  if (formName.value !== "" && formEmail.value !== "" && formMessage.value !== "") {
+    document.querySelector("input[type='submit']").disabled = false;
+  } else {
+    document.querySelector("input[type='submit']").disabled = true;
+  }
+}); //document.getElementById('my-input-id').disabled = false;
+
 particlesJS("particles-js", {
   "particles": {
     "number": {
@@ -2092,7 +2112,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52147" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

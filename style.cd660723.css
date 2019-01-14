@@ -553,11 +553,13 @@ button .blinking-span {
 .blurry-background {
   filter: blur(2px); }
 
-footer .padding-container {
-  padding: 40px;
-  text-align: right; }
-  footer .padding-container p {
-    display: inline; }
+footer {
+  position: relative; }
+  footer .padding-container {
+    padding: 40px;
+    text-align: right; }
+    footer .padding-container p {
+      display: inline; }
 
 @media (max-width: 600px) {
   .page-hero {
@@ -747,6 +749,11 @@ nav {
   height: 100%;
   z-index: -1; }
 
+.intro-box-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: center; }
+
 .intro-box-title {
   display: flex;
   justify-content: space-between;
@@ -773,7 +780,8 @@ nav {
   animation-duration: 2500ms;
   animation-fill-mode: forwards;
   transform-origin: center;
-  background: #171717; }
+  background: #171717;
+  min-width: 300px; }
 
 /*
 .intro-blink{
@@ -816,7 +824,6 @@ nav {
 .scroll-down-animated span:nth-child(3) {
   animation-delay: -0.4s; }
 
-/* HOMEPAGE - INTRO SECTION*/
 @keyframes introBlink {
   0% {
     opacity: 0; }
@@ -862,6 +869,34 @@ nav {
   100% {
     opacity: 0;
     transform: rotate(45deg) translate(20px, 20px); } }
+@media (max-width: 700px) {
+  .outer-box.intro-box {
+    min-width: 90%; } }
+@media (max-width: 500px) {
+  #typed-text {
+    top: 53%; }
+    #typed-text p {
+      font-size: 15px;
+      line-height: 17px; } }
+/* to make smaller the navigation field
+@media (max-width: 650px){
+  #typed-text p{
+    font-size: 15px;
+  }
+  .sphere{
+    width: 110px;
+    height: 110px;
+  } 
+  .main-cube-wrap {
+    width: 120px;
+    height: 120px;
+  }
+  .cube div {
+    width: 110px;
+    height: 110px;  
+  }
+}
+*/
 #navigation-starfield {
   width: 100%;
   background: black;
@@ -1186,6 +1221,7 @@ nav {
 
 /* Filter functionality */
 .hidden {
+  transition: all 500ms;
   opacity: 0 !important;
   visibility: hidden;
   transform: scale(0.8);
@@ -1199,7 +1235,7 @@ nav {
 .portfolio-item-wrap.filter-description {
   grid-column: 1 / -1 !important;
   max-width: 700px;
-  display: block !important;
+  flex-direction: column;
   margin: 0 auto;
   cursor: initial; }
   .portfolio-item-wrap.filter-description h3 {
@@ -1436,6 +1472,27 @@ button.base-button:hover button.base-button::before {
     .portfolio-item-card-back a:hover {
       color: white; }
 
+#about-section {
+  height: 100vh;
+  min-height: 800px;
+  display: grid;
+  grid-template-columns: minmax(350px, 500px) minmax(700px, 1fr); }
+  #about-section aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative; }
+    #about-section aside .underline-span {
+      width: 80px;
+      margin-left: 45px; }
+  #about-section main {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; }
+
 .particles-js-canvas-el {
   position: absolute;
   opacity: 0.4;
@@ -1506,28 +1563,7 @@ button.base-button:hover button.base-button::before {
     text-shadow: 0px 0px 10px #7ab793; }
   100% {
     text-shadow: 0px 0px 0px #7ab793; } }
-#about-section {
-  height: 100vh;
-  min-height: 800px;
-  display: grid;
-  grid-template-columns: minmax(300px, 500px) minmax(550px, 1fr); }
-  #about-section aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    position: relative; }
-    #about-section aside .underline-span {
-      width: 80px;
-      margin-left: 45px; }
-  #about-section main {
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; }
-
-.full-screen-about {
+.full-screen-about, .full-screen-success {
   width: 0;
   height: 100%;
   position: absolute;
@@ -1543,14 +1579,16 @@ button.base-button:hover button.base-button::before {
   padding-top: 150px;
   transition: all 500ms; }
 
-.full-screen-about.active {
+.full-screen-about.active, .full-screen-about-active {
   width: 100%;
-  opacity: 1; }
-  .full-screen-about.active .padding-container {
+  opacity: 1;
+  overflow: scroll;
+  padding-bottom: 40px; }
+  .full-screen-about.active .padding-container, .full-screen-about-active .padding-container {
     max-width: 800px; }
-    .full-screen-about.active .padding-container p a {
+    .full-screen-about.active .padding-container p a, .full-screen-about-active .padding-container p a {
       color: #7ab793; }
-  .full-screen-about.active .full-screen-menu-close {
+  .full-screen-about.active .full-screen-menu-close, .full-screen-about-active .full-screen-menu-close {
     display: block; }
 
 .about-description button {
@@ -1585,6 +1623,9 @@ button.base-button:hover button.base-button::before {
   transition: all 200ms;
   resize: none;
   text-indent: 10px; }
+
+.contact-form input[type="submit"]:disabled:hover {
+  cursor: not-allowed; }
 
 .contact-form input[type="submit"] {
   width: 50%;
@@ -1669,82 +1710,87 @@ button.base-button:hover button.base-button::before {
 
 /* MAIN - Personal tag positions */
 .personal-tag1 {
-  top: 20%;
+  top: 5%;
   left: 20%;
   animation-delay: 700ms; }
 
 .personal-tag2 {
-  top: 30%;
-  left: 35%;
+  top: 15%;
+  left: 60%;
   animation-delay: 1300ms; }
 
 .personal-tag3 {
-  top: 40%;
+  top: 25%;
   left: 55%;
   animation-delay: 1800ms; }
 
 .personal-tag4 {
-  top: 50%;
+  top: 35%;
   left: 25%; }
 
 .personal-tag5 {
-  top: 60%;
-  left: 55%;
+  top: 45%;
+  left: 15%;
   animation-delay: 1s; }
 
 .personal-tag6 {
-  top: 60%;
-  left: 55%;
+  top: 55%;
+  left: 20%;
   animation-delay: 1s; }
 
 .personal-tag7 {
-  top: 60%;
+  top: 65%;
   left: 55%;
   animation-delay: 1s; }
 
 .personal-tag8 {
-  top: 60%;
+  top: 75%;
   left: 55%;
   animation-delay: 1s; }
 
 /******* profesional tags  *********/
 .professional-tag1 {
-  top: 5%;
+  top: 10%;
   left: 45%;
   animation-delay: 500ms; }
 
 .professional-tag2 {
-  top: 10%;
+  top: 20%;
   left: 30%;
   animation-delay: 1s; }
 
 .professional-tag3 {
-  top: 15%;
+  top: 30%;
   left: 75%;
   animation-delay: 1500ms; }
 
 .professional-tag4 {
-  top: 20%;
+  top: 40%;
   left: 40%;
   animation-delay: 2s; }
 
 .professional-tag5 {
-  top: 25%;
+  top: 50%;
   left: 70%;
   animation-delay: 800ms; }
 
 .professional-tag6 {
-  top: 30%;
+  top: 55%;
   left: 50%;
   animation-delay: 3s; }
 
 .professional-tag7 {
-  top: 35%;
-  left: 50%;
+  top: 60%;
+  left: 30%;
   animation-delay: 3s; }
 
 .professional-tag8 {
-  top: 45%;
+  top: 65%;
+  left: 35%;
+  animation-delay: 3s; }
+
+.professional-tag9 {
+  top: 70%;
   left: 50%;
   animation-delay: 3s; }
 
@@ -1755,19 +1801,32 @@ button.base-button:hover button.base-button::before {
       border-bottom: 1px solid #7ab793;
       padding-bottom: 40px; }
       #about-section aside .about-description {
-        margin-bottom: 40px; } }
+        margin-bottom: 40px; }
+
+  #about-section main#particles-js {
+    display: none; } }
 /****** *******/
 .portfolio-single-grid {
   display: grid;
   max-width: 1600px;
-  margin: 0 auto;
   height: 100%;
+  min-height: 100vh;
   grid-template-columns: minmax(300px, 500px) minmax(550px, 1fr); }
+  .portfolio-single-grid aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative; }
+    .portfolio-single-grid aside .underline-span {
+      width: 80px;
+      margin-left: 45px; }
   .portfolio-single-grid main {
-    max-width: 1200px;
+    max-width: 990px;
     display: grid;
     grid-template-columns: 30px 1fr 1fr 30px;
-    grid-template-rows: 50px 1fr 1fr 50px; }
+    grid-template-rows: 50px 350px 350px 50px;
+    height: 100%; }
     .portfolio-single-grid main div {
       position: relative; }
     .portfolio-single-grid main img {
@@ -1814,7 +1873,6 @@ button.base-button:hover button.base-button::before {
   margin-top: -25px; }
 
 .portffolio-single-text-wrap {
-  border-right: 1px solid #fff;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
